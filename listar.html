@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>Listar</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="professores.html">Cadastrar Professor</a>
+        <a href="orientacao.html">Cadastrar Orientação</a>
+        <a href="listar.html">Listar</a>
+        <a href="#">Sair</a>
+    </div>
+
+    <fieldset>
+        <legend>Busca de professor e listagem</legend>
+        <form method="GET" action="listar" accept-charset="iso-8859-1" class="doLadinho" id="formPesquisarProfessor">
+            <p>Pesquise o professor</p>
+            <input required name="inputNome" />
+            <button type="submit" id="pesquisar">Pesquisar</button>
+        </form>
+        <form method="GET" action="listar" accept-charset="iso-8859-1" class="doLadinho" id="formListarProfessor">
+            <input class="invisivel" name="inputNome" />
+            <button type="submit" id="listarTudo">Listar Tudo</button>
+        </form>
+        <ul>
+            <!-- <c:forEach items="${orientacoes}" var="array">
+                    <li>${array.professor.nomeProfessor}
+                        <ul>
+                            <li>Descrição da orientação: ${array.descricaoOrientacao}</li> 
+                            <li>Orientado: ${array.orientadoOrientacao}</li>
+                        </ul>                    
+                    </li>
+                </c:forEach> -->
+        </ul>
+    </fieldset>
+    <!-- <h5>${msgCampos}</h5> -->
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>

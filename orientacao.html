@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="professores.html">Cadastrar Professor</a>
+        <a href="orientacao.html">Cadastrar Orientação</a>
+        <a href="listar.html">Listar</a>
+        <a href="#">Sair</a>
+    </div>
+    <h1>Bem vindo(a) a tela de Cadastro de Orientação!</h1>
+    <form method="POST" name="orientacao" id="formCadastrarOrientacao">
+        <label>Descrição da Orientação: </label>
+        <input type="text" name="descricaoOrientacao">
+        <label>Orientando(a) da Orientação: </label>
+        <input type="text" name="orientadoOrientacao">
+        <select name="option">
+            <option value="">Selecione o Professor</option>
+        </select>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#mensagem').html('<span class="mensagem">Aguarde, carregando ...</span>');  
+
+                $.getJSON('consulta.php?opcao=estado&valor='+pais, function (dados){ 
+
+                if (dados.length > 0){    
+                    var option = '<option>Selecione o Professor(a)</option>';
+                    $.each(dados, function(i, obj){
+                    option += '<option value="'+obj.sigla+'">'+obj.nome+'</option>';
+                    })
+                }else{
+                    Reset();
+                    $('#mensagem').html('<span class="mensagem">Não foi encontrado nenhum professor(a).</span>');  
+                    }
+                })
+            })
+        </script>
+
+        <button type="submit" value="Cadastrar" id="cadastrarOrientacao">Cadastrar</button>
+    </form>
+
+    <!-- <h5>${msgCampos}</h5> -->
+    <script type="text/javascript" src="js/script.js"></script>
+
+
+</body>
+
+</html>

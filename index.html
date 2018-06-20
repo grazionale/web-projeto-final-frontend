@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <input type='checkbox' id='form-switch'>
+    <form id='login-form' action="login" method='post'>
+        <label>Email</label>
+        <input type="text" name="email" required>
+        <label>Senha</label>
+        <input type="password" name="senha" required>
+        <button type='submit' id="logar">Logar</button>
+        <label for='form-switch'>
+            <span>Cadastrar</span>
+        </label>
+        <!-- <h4>${msgErro} </h4> -->
+    </form>
+
+    <form id='register-form' action="perfil" method='post'>
+        <label>Nome</label>
+        <input type="text" name="c_nome" required>
+        <label>Email</label>
+        <input type="email" name="c_email" required>
+        <label>Senha</label>
+        <input type="password" name="c_senha" required>
+        <button type='submit' id="cadastrar">Cadastrar</button>
+        <label for='form-switch'>Faça seu login</label>
+    </form>
+
+
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>
