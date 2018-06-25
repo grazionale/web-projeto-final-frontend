@@ -1,26 +1,25 @@
 $(document).ready(function(){
 
     //Professores
-    $("#cadastrarProfessor").click(function(){
-        alert("Cadastrar Professor");
-            //console.log($("#formCadastroProfessor").serialize());
-            //return false;
+    $("#cadastrarProfessor").click(function(e){
 
-            //console.log("Oi");
+        var prof = {
+            nomeProfessor: $("#nomeProfessor").val() 
+        };
+
+        e.preventDefault();
+           
         $.ajax({
-            url: '', // url where to submit the request
-            type : "POST",
-            async   : true, // type of action POST || GET
-            dataType : 'json', // data type
-            data : $("#formCadastroProfessor").serialize(), // post data || get data
+            url: 'http://localhost:8080/professor', 
+            type : 'post',
+            dataType : 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(prof),
             success : function(result) {
-                // you can see the result from the console
-                // tab of the developer tools
                 console.log(result);
             },
             error: function(xhr, resp, text) {
-                console.log(xhr, resp, text);
-                 
+                console.log(xhr, resp, text);   
             }
         })
     });
