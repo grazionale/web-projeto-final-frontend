@@ -17,25 +17,11 @@
 
     <fieldset>
         <legend>Busca de professor e listagem</legend>
-        <form method="GET" action="listar" accept-charset="iso-8859-1" class="doLadinho" id="formPesquisarProfessor">
             <p>Pesquise o professor</p>
-            <input required name="inputNome" />
-            <button type="submit" id="pesquisar">Pesquisar</button>
-        </form>
-        <form method="GET" action="listar" accept-charset="iso-8859-1" class="doLadinho" id="formListarProfessor">
-            <input class="invisivel" name="inputNome" />
-            <button type="submit" id="listarTudo">Listar Tudo</button>
-        </form>
-        <ul>
-            <!-- <c:forEach items="${orientacoes}" var="array">
-                    <li>${array.professor.nomeProfessor}
-                        <ul>
-                            <li>Descrição da orientação: ${array.descricaoOrientacao}</li> 
-                            <li>Orientado: ${array.orientadoOrientacao}</li>
-                        </ul>                    
-                    </li>
-                </c:forEach> -->
-        </ul>
+            <input required name="inputNome" id="inputNome" />
+            <button type="button" id="pesquisar" class="js-list">Pesquisar</button>
+        
+        <ul id="listagem-orientacoes"></ul>
     </fieldset>
     <!-- <h5>${msgCampos}</h5> -->
     <script type="text/javascript" src="js/script.js"></script>
