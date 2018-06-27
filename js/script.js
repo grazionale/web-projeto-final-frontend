@@ -4,7 +4,7 @@ $(document).ready(function(){
     $("#cadastrarProfessor").click(function(e) {
 
         var prof = {
-            nomeProfessor: $("#nomeProfessor").val() 
+            nomeProfessor: $("#nomeProfessor").val()
         };
 
         e.preventDefault();
@@ -15,13 +15,24 @@ $(document).ready(function(){
             dataType : 'json',
             contentType: 'application/json',
             data: JSON.stringify(prof),
+            headers: {
+                "Authorization": "Basic " + window.localStorage.getItem("token")
+            },
             success : function(result) {
                 console.log(result);
             },
             error: function(xhr, resp, text) {
-                console.log(xhr, resp, text);   
+                window.localStorage.removeItem("token");
+                window.location.replace("http://127.0.0.1:4200/");
             }
         })
+    });
+
+    $("#sair").click(function(e) {
+
+        window.localStorage.removeItem("token");
+        window.location.replace("http://127.0.0.1:4200/");
+          
     });
 
     // CADASTRAR ORIENTAÇÃO
@@ -43,11 +54,15 @@ $(document).ready(function(){
             dataType : 'json', 
             contentType: 'application/json',
             data: JSON.stringify(ori),
+            headers: {
+                "Authorization": "Basic " + window.localStorage.getItem("token")
+            },
             success : function(result) {
                 
             },
             error: function(xhr, resp, text) {
-                 
+                window.localStorage.removeItem("token");
+                window.location.replace("http://127.0.0.1:4200/");
             }
         })
     });
@@ -57,6 +72,9 @@ $(document).ready(function(){
         $.ajax({
             url: 'http://localhost:8080/orientacao?nomeProfessor=' + $("#inputNome").val(), // url where to submit the request
             type : "get",
+            headers: {
+                "Authorization": "Basic " + window.localStorage.getItem("token")
+            },
             success : function(result) {
                 if (!!result.content.length) {
                     var data = result.content;
@@ -76,30 +94,21 @@ $(document).ready(function(){
                 }
             },
             error: function(xhr, resp, text) {
-                 
+                window.localStorage.removeItem("token");
+                window.location.replace("http://127.0.0.1:4200/"); 
             }
         });
     });
 
-    $("#logar").click(function(){
-        alert("Logar");
+    $("#logar").click(function(e){
 
-        // $.ajax({
-        //     url: '', // url where to submit the request
-        //     type : "POST",
-        //     async   : true, // type of action POST || GET
-        //     dataType : 'json', // data type
-        //     data : $("#login-form").serialize(), // post data || get data
-        //     success : function(result) {
-        //         // you can see the result from the console
-        //         // tab of the developer tools
-        //         console.log(result);
-        //     },
-        //     error: function(xhr, resp, text) {
-        //         console.log(xhr, resp, text);
-                 
-        //     }
-        // })
+        e.preventDefault();
+        
+        var token = btoa($("#emailLogin").val() + ":" + $("#senhaLogin").val());
+        window.localStorage.setItem("token", token);
+
+        window.location.replace("http://127.0.0.1:4200/professores");
+
     });
 
     $("#cadastrarUsuario").click(function(e){
@@ -128,10 +137,17 @@ $(document).ready(function(){
 
     $(".js-cadastro-orientacao").ready(function(e){
         // e.preventDefault();
+
+        if(window.location.href === 'http://127.0.0.1:4200' || window.location.href === 'http://127.0.0.1:4200/') {
+            return;
+        }
+
         $.ajax({
             type: "get",
             url: "http://localhost:8080/professor",
-
+            headers: {
+                "Authorization": "Basic " + window.localStorage.getItem("token")
+            },
             success: function (obj) {
                 if (obj != null) {
                     var data = obj;
@@ -143,6 +159,10 @@ $(document).ready(function(){
                     });
                     selectbox.append(_htmlOptions);
                 }
+            },
+            error: function(obj) {
+                window.localStorage.removeItem("token");
+                window.location.replace("http://127.0.0.1:4200/");
             }
         });   
     });
